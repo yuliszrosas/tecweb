@@ -93,6 +93,18 @@
         echo '$GLOBALS["z"][0] = ' . $GLOBALS['z'][0] . '<br>'; 
         ?>
     </p>
+    <h2>Ejercicio 5</h2>
+    <p>
+        <?php
+            $a1 = "7 personas"; 
+            $b1 = (integer) $a1; 
+            $a1 = "9E3"; 
+            $c1 = (double) $a1; 
 
+            echo '$a = ' . $a1 . '<br>'; 
+            echo '$b = ' . $b1 . '<br>';
+            echo '$c = ' . $c1 . '<br>';
+        ?>
+    </p>
 </body>
 </html>
