@@ -106,5 +106,40 @@
             echo '$c = ' . $c1 . '<br>';
         ?>
     </p>
+    <h2>Ejericio 6</h2>
+    <p>
+        <?php
+        // Inicialización de variables
+        $a2 = "0";         
+        $b2 = "TRUE";      
+        $c2 = FALSE;       
+        $d2 = ($a2 OR $b2);  
+        $e2 = ($a2 AND $c2); 
+        $f2 = ($a2 XOR $b2);
+    
+        // Mostrar los valores usando var_dump
+        echo "\$a: ";
+        var_dump($a2); 
+        echo '<br>';
+        echo "\$b: ";
+        var_dump($b2); 
+        echo '<br>';
+        echo "\$c: ";
+        var_dump($c2); 
+        echo '<br>';
+        echo "\$d: ";
+        var_dump($d2); 
+        echo '<br>';
+        echo "\$e: ";
+        var_dump($e2); 
+        echo '<br>';
+        echo "\$f: ";
+        var_dump($f2);
+        echo '<br>';
+        echo '<br>';
+        ?>
+    </p>
+
+
 </body>
 </html>
