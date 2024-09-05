@@ -50,6 +50,31 @@
             <br>La variable $c sigue siendo una referencia a $a. Como $a ha cambiado su valor a "PHP server", $c también refleja este cambio.';
     ?>
     </p>
+    <h2>Ejercicio 3</h2>
+    <p>
+        <?php
+            $a = "PHP5";
+            echo '$a = ' . $a . '<br>';
+
+            $z[] = &$a; 
+            echo '$z[0] = ' . $z[0] . '<br>';
+
+            $b = "5a version de PHP";
+            echo '$b = ' . $b . '<br>';
+
+            $c = $b * 10;
+            echo '$c = ' . $c . '<br>';
+
+            $a .= $b; 
+            echo '$a = ' . $a . '<br>';
+
+            $b *= $c; 
+            echo '$b = ' . $b . '<br>';
+
+            $z[0] = "MySQL"; 
+            echo '$z[0] = ' . $z[0] . '<br>';
+        ?>
+    </p>
 
 </body>
 </html>
