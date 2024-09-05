@@ -75,6 +75,24 @@
             echo '$z[0] = ' . $z[0] . '<br>';
         ?>
     </p>
+    <h2>Ejercicio 4</h2>
+    <p>
+    <?php
+        $a = "PHP5";
+        $z[] = &$a; 
+        $b = "5a version de PHP";
+        $c = $b * 10; 
+        $a .= $b; 
+        $b *= $c; 
+        $z[0] = "MySQL"; 
+
+        // Mostrar valores usando $GLOBALS
+        echo '$GLOBALS["a"] = ' . $GLOBALS['a'] . '<br>'; 
+        echo '$GLOBALS["b"] = ' . $GLOBALS['b'] . '<br>'; 
+        echo '$GLOBALS["c"] = ' . $GLOBALS['c'] . '<br>'; 
+        echo '$GLOBALS["z"][0] = ' . $GLOBALS['z'][0] . '<br>'; 
+        ?>
+    </p>
 
 </body>
 </html>
