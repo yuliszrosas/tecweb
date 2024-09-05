@@ -139,7 +139,21 @@
         echo '<br>';
         ?>
     </p>
+    <h2>Ejercicio 7</h2>
+    <p>
+    <?php
+        // a. Obtener la versión de Apache y PHP
+        echo 'Versión de Apache: ' . (isset($_SERVER['SERVER_SOFTWARE']) ? $_SERVER['SERVER_SOFTWARE'] : 'No disponible') . '<br>';
+        echo 'Versión de PHP: ' . phpversion() . '<br>';
 
+        // b. Obtener el nombre del sistema operativo del servidor
+        echo 'Sistema Operativo del Servidor: ' . (PHP_OS_FAMILY ? PHP_OS_FAMILY : 'No disponible') . '<br>';
+
+        // c. Obtener el idioma del navegador del cliente
+        echo 'Idioma del Navegador del Cliente: ' . (isset($_SERVER['HTTP_ACCEPT_LANGUAGE']) ? $_SERVER['HTTP_ACCEPT_LANGUAGE'] : 'No disponible') . '<br>';
+        ?>
+
+    </p>
 
 </body>
 </html>
