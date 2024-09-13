@@ -30,6 +30,14 @@
         <input type="submit" value="Enviar">
     </form>
 
+    <h2>Ejercicio 2</h2>
+    <p>Crear un programa para la generación repetitiva de 3 números aleatorios
+        hasta obtener una secuencia compuesta por: impar, par, impar
+    </p>
+    <form action="src/funciones.php" method="get">
+        <input type="submit" value="Generar secuencia">
+    </form>
+
 
 </body>
 </html>
