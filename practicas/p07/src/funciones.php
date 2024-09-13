@@ -55,4 +55,33 @@
 
     generarSecuenciaAleatoria();
 
+    //Ejercicio 3
+    if(isset($_GET['num']))
+    {
+        $num = $_GET['num'];
+        encontrarMultiploWhile($num);
+        encontrarMultiploDoWhile($num);
+    }
+    //Variante con while
+    function encontrarMultiploWhile($num) {
+        $random = rand(1, 100);
+
+        while ($random % $num !== 0) {
+            $random = rand(1, 100);
+        }
+
+        echo "<h3>Ejercicio 3 <br> Variante while</h3>";
+        echo "<p>El primer múltiplo de {$num} encontrado es: {$random}";
+    }
+
+    //Variante con do-while
+    function encontrarMultiploDoWhile($num) {
+        do {
+            $random = rand(1, 100);
+        } while ($random % $num !== 0);
+
+        echo "<h3>Variante do-while</h3>";
+        echo "<p>El primer múltiplo de {$num} encontrado es: {$random}";
+    }
+
 ?>

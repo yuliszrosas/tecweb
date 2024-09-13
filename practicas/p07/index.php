@@ -38,6 +38,21 @@
         <input type="submit" value="Generar secuencia">
     </form>
 
+    <h2>Ejercicio 3</h2>
+    <p>Utiliza un ciclo while para encontrar el primer número entero obtenido aleatoriamente,
+        pero que además sea múltiplo de un número dado.
+
+        <ul>
+            <li>Crear una variante de este script utilizando el diclo do-while</li>
+            <li>El número dado se debe obtener vía GET</li>   
+        </ul>
+    </p>
+    <form action="src/funciones.php" method="get">
+        <label for="num">Introduce un número:</label>
+        <input type="text" id="num" name="num" required>
+        <input type="submit" value="Enviar">
+    </form> 
+
 
 </body>
 </html>
