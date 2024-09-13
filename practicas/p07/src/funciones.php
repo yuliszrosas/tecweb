@@ -84,4 +84,21 @@
         echo "<p>El primer múltiplo de {$num} encontrado es: {$random}";
     }
 
+    //Ejercicio 4
+    function crearArregloASCII() {
+        $arreglo = [];
+        for ($i = 97; $i <= 122; $i++) {
+            $arreglo[$i] = chr($i);
+        }
+
+        echo "<h3>Ejercicio 4</h3>";
+        echo "<table border='1'><tr><th>Índice</th><th>Letra</th></tr>";
+        foreach ($arreglo as $key => $value) {
+            echo "<tr><td>{$key}</td><td>{$value}</td></tr>";
+        }
+        echo "</table>";
+    }
+
+    crearArregloASCII();
+
 ?>
