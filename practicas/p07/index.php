@@ -80,6 +80,22 @@
         <input type="submit" value="Enviar">
     </form>
 
-
+    <h2>Ejercicio 6</h2>
+    <p>
+    Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de
+    una ciudad.
+    </p>
+    <p>Consultar información del parque vehicular.</p>
+    <form action="src/funciones.php" method="get">
+        <label for="matricula">Buscar por matrícula:</label>
+        <input type="text" id="matricula" name="matricula">
+        <input type="hidden" name="ejercicio" value="6">
+        <input type="submit" value="Consultar">
+    </form>
+    <form action="src/funciones.php" method="get">
+        <input type="hidden" name="ejercicio" value="6">
+        <input type="hidden" name="mostrar_todos" value="1">
+        <input type="submit" value="Mostrar Todos">
+    </form>
 </body>
 </html>
