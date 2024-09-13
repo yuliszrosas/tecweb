@@ -62,6 +62,24 @@
         <input type="submit" value="Generar arreglo">
     </form>
 
+    <h2>Ejercicio 5</h2>
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de
+        sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de
+        bienvenida apropiado.
+    </p>
+    <form action="src/funciones.php" method="post">
+        <label for="edad">Edad:</label>
+        <input type="number" id="edad" name="edad" required>
+        <br>
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+            <option value="femenino">Femenino</option>
+            <option value="masculino">Masculino</option>
+        </select>
+        <br>
+        <input type="submit" value="Enviar">
+    </form>
+
 
 </body>
 </html>

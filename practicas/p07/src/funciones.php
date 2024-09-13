@@ -100,5 +100,25 @@
     }
 
     crearArregloASCII();
+    
+    //Ejercicio 5
+    function identificarPersona() {
+        if (isset($_POST['edad']) && isset($_POST['sexo'])) {
+            $edad = $_POST['edad'];
+            $sexo = $_POST['sexo'];
+
+            // Validar si la persona es de sexo femenino y tiene edad entre 18 y 35 años
+            if ($sexo === "femenino" && $edad >= 18 && $edad <= 35) {
+                echo '<h3>Ejercicio 5</h3>';
+                echo 'Bienvenida, usted está en el rango de edad permitido.';
+            } else {
+                echo '<h3>Ejercicio 5</h3>';
+                echo "Lo sentimos, usted no está en el rango de edad permitido.";
+            }
+        }
+    }
+
+    identificarPersona();
+
 
 ?>
