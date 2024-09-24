@@ -53,8 +53,8 @@ if ($result->num_rows > 0) {
         }
 
         // Preparar la consulta para insertar el producto con 'eliminado' en 0 y la ruta de la imagen
-        $sql_insert = "INSERT INTO productos (nombre, marca, modelo, precio, unidades, imagen) 
-                       VALUES ('$nombre', '$marca', '$modelo', $precio, $cantidad, '$ruta_imagen')";
+        $sql_insert = "INSERT INTO productos (nombre, marca, modelo, precio, unidades, imagen, eliminado) 
+                       VALUES ('$nombre', '$marca', '$modelo', $precio, $cantidad, '$ruta_imagen', 0)";
         
         if ($link->query($sql_insert)) {
             // Mensaje si se inserta correctamente
