@@ -53,21 +53,36 @@ if ($result->num_rows > 0) {
         }
 
         // Preparar la consulta para insertar el producto con 'eliminado' en 0 y la ruta de la imagen
-        $sql_insert = "INSERT INTO productos (nombre, marca, modelo, precio, unidades, imagen, eliminado) 
-                       VALUES ('$nombre', '$marca', '$modelo', $precio, $cantidad, '$ruta_imagen', 0)";
-        
-        if ($link->query($sql_insert)) {
-            // Mensaje si se inserta correctamente
-            echo 'Producto insertado con ID: ' . $link->insert_id;
+        //$sql_insert = "INSERT INTO productos (nombre, marca, modelo, precio, unidades, imagen, eliminado) 
+        //               VALUES ('$nombre', '$marca', '$modelo', $precio, $cantidad, '$ruta_imagen', 0)";
+    
+        // Nueva query sin 'id' ni 'eliminado'
+        $sql_insert = "INSERT INTO productos (nombre, marca, modelo, precio, unidades, imagen) 
+        VALUES (?, ?, ?, ?, ?, ?)";
+
+        // Preparar la declaración
+        $stmt = $link->prepare($sql_insert);
+
+        // Vincular los parámetros (nombre, marca, modelo, precio, unidades, ruta de la imagen)
+        $stmt->bind_param('sssdis', $nombre, $marca, $modelo, $precio, $cantidad, $ruta_imagen);
+
+        // Ejecutar la declaración preparada
+        if ($stmt->execute()) {
+        // Mensaje si se inserta correctamente
+        echo 'Producto insertado con ID: ' . $stmt->insert_id;
         } else {
-            // Mensaje si no se pudo insertar
-            echo 'El Producto no pudo ser insertado';
+        // Mensaje si no se pudo insertar
+        echo 'El Producto no pudo ser insertado: ' . $stmt->error;
         }
 
-    } else {
+        // Cerrar la declaración preparada
+        $stmt->close();
+
+        } 
+        else {
         echo "Error al subir la imagen. Código de error: " . $_FILES['imagen']['error'] . "<br>";
         die('Error: No se pudo subir la imagen.');
-    }
+        }
 }
 
 // Cerrar la conexión
