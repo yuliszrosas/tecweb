@@ -5,7 +5,7 @@ var baseJSON = {
     "modelo": "XX-000",
     "marca": "NA",
     "detalles": "NA",
-    "imagen": "img/default.png"
+    "imagen": "img/image.png"
   };
 
 // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
@@ -58,32 +58,6 @@ function buscarID(e) {
         }
     };
     client.send("id="+id);
-}
-
-// FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
-function agregarProducto(e) {
-    e.preventDefault();
-
-    // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
-    var productoJsonString = document.getElementById('description').value;
-    // SE CONVIERTE EL JSON DE STRING A OBJETO
-    var finalJSON = JSON.parse(productoJsonString);
-    // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    finalJSON['nombre'] = document.getElementById('name').value;
-    // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
-
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
-    client.open('POST', './backend/create.php', true);
-    client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
-    client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-        if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
-        }
-    };
-    client.send(productoJsonString);
 }
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
@@ -163,6 +137,95 @@ function buscarProducto(e) {
     client.send("search=" + encodeURIComponent(search));
 }
 
+// FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
+function agregarProducto(e) {
+    e.preventDefault(); // Evita el envío automático del formulario
+
+    // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
+    var productoJsonString = document.getElementById('description').value;
+
+    try {
+        // SE CONVIERTE EL JSON DE STRING A OBJETO
+        var finalJSON = JSON.parse(productoJsonString);
+        // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
+        finalJSON['nombre'] = document.getElementById('name').value;
+
+        // Validar los datos antes de enviarlos
+        if (!validarJSON(finalJSON)) {
+            return; // Si la validación falla, se detiene el envío
+        }
+        // SE OBTIENE EL STRING DEL JSON FINAL
+        productoJsonString = JSON.stringify(finalJSON, null, 2);
+        console.log(finalJSON); // Agrega esto para ver el contenido del JSON
+
+        // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+        var client = getXMLHttpRequest();
+        client.open('POST', './backend/create.php', true);
+        client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
+        client.onreadystatechange = function () {
+            // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+            if (client.readyState == 4 && client.status == 200) {
+                console.log(client.responseText);
+                var response = JSON.parse(client.responseText);
+                // MOSTRAR UN ALERT CON EL MENSAJE DEL SERVIDOR
+                window.alert(response.message);
+            } else if (client.readyState == 4) {
+                console.error('Error al agregar el producto:', client.status, client.responseText);
+                window.alert('Ocurrió un error al agregar el producto.'); 
+            }
+        };
+        client.send(productoJsonString);
+    } catch (error) {
+        alert('El JSON proporcionado es inválido. Asegúrate de que esté en el formato correcto.');
+        console.error('Error de parsing JSON:', error);
+    }
+}
+
+//Validación
+function validarJSON(producto) {
+    // Validar Nombre
+    if (!producto.nombre || producto.nombre.trim() === "" || producto.nombre.length > 100) {
+        alert("El nombre es requerido y debe tener 100 caracteres o menos.");
+        return false;
+    }
+
+    // Validar Marca
+    if (!producto.marca || producto.marca.trim() === "") {
+        alert("La marca es requerida y debe seleccionarse de lista.");
+        return false;
+    }
+
+    // Validar Modelo
+    if (!producto.modelo || producto.modelo.trim() === "" || !/^[a-zA-Z0-9]+$/.test(producto.modelo) || producto.modelo.length > 25) {
+        alert("El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.");
+        return false;
+    }
+
+    // Validar Precio
+    if (isNaN(producto.precio) || producto.precio <= 99.99) {
+        alert("El precio es requerido y debe ser mayor a 99.99.");
+        return false;
+    }
+
+    // Validar Detalles
+    if (producto.detalles && producto.detalles.length > 250) {
+        alert("Los detalles deben tener 250 caracteres o menos.");
+        return false;
+    }
+
+    // Validar Unidades
+    if (isNaN(producto.unidades) || producto.unidades < 0) {
+        alert("Las unidades son requeridas y deben ser mayor o igual a 0.");
+        return false;
+    }
+
+    // Validar Imagen
+    if (!producto.imagen || producto.imagen.trim() === "") {
+        producto.imagen = "img/image.png"; // Asignar imagen por defecto
+    }
+
+    return true; // Todos los datos son válidos
+}
 
 function init() {
     /**
