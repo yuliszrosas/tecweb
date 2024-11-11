@@ -1,0 +1,8 @@
+{
+    "autoload": {
+      "psr-4": {
+        "Product_app\\Backend\\Myapi\\": "backend/myapi/"
+      }
+    }
+}
+  
